@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS grupo_selecao(
 DROP TABLE IF EXISTS jogo;
 CREATE TABLE IF NOT EXISTS jogo(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    selecao1 INT UNSIGNED,
-    selecao2 INT UNSIGNED,
+    selecao1 INT UNSIGNED NOT NULL,
+    selecao2 INT UNSIGNED NOT NULL,
     fase ENUM("grupos", "oitavas", "quartas", "semifinal", "final") NOT NULL,
     data DATETIME NOT NULL,
-    selecao1_gols INT UNSIGNED NULL,
-    selecao2_gols INT UNSIGNED NULL,
-    vencedor INT UNSIGNED NULL,
+    selecao1_gols INT UNSIGNED NOT NULL DEFAULT 0,
+    selecao2_gols INT UNSIGNED NOT NULL DEFAULT 0,
+    CHECK (selecao1 <> selecao2),
     FOREIGN KEY (selecao1) REFERENCES selecao(id),
     FOREIGN KEY (selecao2) REFERENCES selecao(id)
 );
@@ -55,21 +55,13 @@ CREATE TABLE IF NOT EXISTS bolao(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     usuario INT UNSIGNED NOT NULL,
     jogo INT UNSIGNED NOT NULL,
-    palpite1 INT UNSIGNED DEFAULT 0,
-    palpite2 INT UNSIGNED DEFAULT 0,
-    pontuacao INT UNSIGNED DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-DROP TABLE IF EXISTS classificacao;
-CREATE TABLE IF NOT EXISTS classificacao(
-    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    selecao INT UNSIGNED NOT NULL,
-    vitorias INT UNSIGNED DEFAULT 0,
-    empates INT UNSIGNED DEFAULT 0,
-    derrotas  INT UNSIGNED DEFAULT 0,
-    gols INT UNSIGNED DEFAULT 0,
-    FOREIGN KEY (selecao) REFERENCES selecao(id)
+    palpite1 INT UNSIGNED NOT NULL DEFAULT 0,
+    palpite2 INT UNSIGNED NOT NULL DEFAULT 0,
+    pontuacao INT UNSIGNED NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(usuario, jogo),
+    FOREIGN KEY (usuario) REFERENCES usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (jogo) REFERENCES jogo(id) ON DELETE CASCADE
 );
 
 INSERT INTO selecao(nome, bandeira_url) VALUES 
@@ -143,4 +135,5 @@ INSERT INTO grupo_selecao(grupo, selecao) VALUES
 SELECT grupo.nome as grupo, selecao.nome as selecao 
 FROM grupo_selecao 
 INNER JOIN grupo ON grupo.id = grupo_selecao.grupo
-INNER JOIN selecao ON selecao.id = grupo_selecao.selecao;
+INNER JOIN selecao ON selecao.id = grupo_selecao.selecao
+GROUP BY grupo.nome, selecao.nome ORDER BY grupo.nome ASC;
