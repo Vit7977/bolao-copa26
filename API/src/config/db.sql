@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS jogo(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     selecao1 INT UNSIGNED NOT NULL,
     selecao2 INT UNSIGNED NOT NULL,
-    fase ENUM("grupos", "oitavas", "quartas", "semifinal", "final") NOT NULL,
+    fase ENUM("grupos", "16 avos", "oitavas", "quartas", "semifinal", "final") NOT NULL,
     data DATETIME NOT NULL,
     selecao1_gols INT UNSIGNED NOT NULL DEFAULT 0,
     selecao2_gols INT UNSIGNED NOT NULL DEFAULT 0,
