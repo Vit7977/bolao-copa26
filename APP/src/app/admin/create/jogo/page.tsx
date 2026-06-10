@@ -48,10 +48,10 @@ export default function CreateJogo() {
     }
 
     setAlert({
-        message: response.message,
-        error: false,
-        visibility: true,
-      });
+      message: response.message,
+      error: false,
+      visibility: true,
+    });
 
     setTimeout(() => {
       window.location.reload();
@@ -60,7 +60,11 @@ export default function CreateJogo() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <AlertCard message={alert.message} error={alert.error} visibility={alert.visibility}/>
+      <AlertCard
+        message={alert.message}
+        error={alert.error}
+        visibility={alert.visibility}
+      />
       <div className="w-full max-w-3xl bg-white rounded-3xl shadow-xl border border-zinc-200 p-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-zinc-800">Criar Jogo</h1>
@@ -105,19 +109,8 @@ export default function CreateJogo() {
 
           <button
             type="submit"
-            className="
-            w-full
-            bg-lime-600
-            text-white
-            py-3
-            rounded-xl
-            font-semibold
-            shadow-lg
-            hover:bg-lime-700
-            hover:scale-[1.01]
-            active:scale-[0.99]
-            transition-all
-          "
+            className="w-full bg-lime-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:bg-lime-700 
+            hover:scale-[1.01] active:scale-[0.99] transition-all duration-300"
           >
             Criar Jogo
           </button>
