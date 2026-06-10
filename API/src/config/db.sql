@@ -1,4 +1,4 @@
-DROP DATABASE bolaocopa26;
+-- DROP DATABASE bolaocopa26;
 
 CREATE DATABASE bolaocopa26;
 

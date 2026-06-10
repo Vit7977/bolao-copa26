@@ -8,3 +8,9 @@ export const createJogo = async (data: Jogo) => {
     body: JSON.stringify(data),
   });
 };
+
+export const getJogos = async() => {
+  return await api("/jogo", {
+    method: "GET"
+  })
+}

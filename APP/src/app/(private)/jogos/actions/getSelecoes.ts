@@ -1,10 +1,10 @@
 "use server"
 
-import { getJogos } from "@/src/services/jogo";
+import { getSelecoes } from "@/src/services/selecao";
 
-export const getJogosAction = async () => {
+export const getSelecoesAction = async () => {
   try {
-    const result = await getJogos();
+    const result = await getSelecoes();
 
     if (!result.success) {
       return {
@@ -16,7 +16,7 @@ export const getJogosAction = async () => {
 
     return {
       success: true,
-      message: result.message || "Jogos consultados com sucesso!",
+      message: result.message || "Seleções consultadas com sucesso!",
       data: result.data,
     };
   } catch (error) {

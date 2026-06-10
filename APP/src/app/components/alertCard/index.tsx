@@ -10,8 +10,8 @@ export default function AlertCard({ message, error, visibility }: Props) {
   return (
     <div
       className={`${visibility ? "opacity-100" : "opacity-0"} 
-        flex items-center gap-1 absolute top-10 right-20 p-2 max-w-2xl
-        rounded-lg ${error ? "bg-red-600 text-red-950" : "bg-lime-600 text-lime-900"} 
+        flex items-center gap-1 absolute top-10 right-20 p-2  max-w-2xl shadow-md
+        rounded-lg ${error ? "bg-red-600 text-red-950 shadow-red-700" : "bg-lime-600 text-lime-900 shadow-lime-700"} 
     `}
     >
       <span>{error ? <BiError fontSize={24} /> : <BiCheckCircle fontSize={24} />}</span>
