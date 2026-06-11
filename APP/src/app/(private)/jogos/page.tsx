@@ -72,27 +72,66 @@ export default function Jogos() {
     }
   }, [jogos, filtroAtivo]);
 
+  // Agrupa jogos por data (só quando filtroAtivo === "data")
+  const jogosPorData = useMemo(() => {
+    if (filtroAtivo !== "data") return null;
+  
+    return jogosFiltrados.reduce<Record<string, Jogo[]>>((acc, jogo) => {
+      const data = new Date(jogo.data).toLocaleDateString("pt-BR", {day: "2-digit", month: "long"});
+      if (!acc[data]) acc[data] = [];
+      acc[data].push(jogo);
+      return acc;
+    }, {});
+  }, [jogosFiltrados, filtroAtivo]);
+
   return (
     <div className="w-full flex flex-col items-center">
-      <h1 className="p-3 font-bold text-3xl">JOGOS</h1>
-      <div className="w-full flex justify-end px-8 mb-4">
-        <Filter
-          filtros={filtros}
-          filtroAtivo={filtroAtivo}
-          onFiltroChange={setFiltroAtivo}
-        />
+  <h1 className="p-3 font-bold text-3xl">JOGOS</h1>
+  <div className="w-full flex justify-end px-8 mb-4">
+    <Filter
+      filtros={filtros}
+      filtroAtivo={filtroAtivo}
+      onFiltroChange={setFiltroAtivo}
+    />
+  </div>
+
+  {jogosPorData ? (
+    // Renderização agrupada por data
+    Object.entries(jogosPorData).map(([data, jogosDodia]) => (
+      <div key={data} className="w-full mb-6">
+
+        <div className="flex flex-col justify-center items-center">
+          <h2 className="text-xl font-medium px-8 p-2 mb-2 bg-lime-600 rounded-full">{data}</h2>
+          <div className="grid grid-cols-5 gap-4 px-8">
+            {jogosDodia.map((item) => (
+              <div key={item.id}>
+                <CardJogo
+                  jogo={item}
+                  selecoes={selecoes}
+                  grupo_selecao={grupoSelecao}
+                  grupos={grupos}
+                  />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="grid grid-cols-4 gap-4">
-        {jogosFiltrados.map((item) => (
+    ))
+  ) : (
+    // Renderização normal (fase, seleção, grupo)
+    <div className="grid grid-cols-5 gap-4">
+      {jogosFiltrados.map((item) => (
+        <div key={item.id}>
           <CardJogo
-            key={item.id}
             jogo={item}
             selecoes={selecoes}
             grupo_selecao={grupoSelecao}
             grupos={grupos}
           />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
+  )}
+</div>
   );
 }

@@ -82,7 +82,7 @@ export default function CardJogo({
 
       <div className="flex gap-1 text-center font-medium">
         <span>{new Date(jogo.data).toLocaleDateString("pt-BR")}</span>
-        <span>{new Date(jogo.data).toLocaleTimeString("pt-BR")}</span>
+        <span>{new Date(jogo.data).toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"})}</span>
       </div>
 
       <span className="font-medium">Fase: {jogo.fase.toUpperCase()}</span>
