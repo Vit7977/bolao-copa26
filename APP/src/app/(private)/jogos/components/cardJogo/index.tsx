@@ -92,7 +92,7 @@ export default function CardJogo({
         hover:bg-lime-700 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300"
         onMouseEnter={() => setFocus(true)}
         onMouseLeave={() => setFocus(false)}
-        onClick={() => router.push(`/apostar?jogo=${jogo.id}`)}
+        onClick={() => router.push(`/bolao/${jogo.id}`)}
       >
         <FaStar />
         <span
@@ -100,7 +100,7 @@ export default function CardJogo({
             focus ? "max-w-24 opacity-100 pl-2" : "max-w-0 opacity-0"
           }`}
         >
-          Apostar
+          Bolão
         </span>
       </button>
     </div>

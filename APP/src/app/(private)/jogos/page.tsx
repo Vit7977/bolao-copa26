@@ -1,7 +1,7 @@
 "use client";
 import CardJogo from "./components/cardJogo";
-import { getJogosAction } from "./actions/getJogos";
-import { getSelecoesAction } from "./actions/getSelecoes";
+import { getJogosAction } from "../../actions/jogo";
+import { getSelecoesAction } from "../../actions/selecao";
 import { useState, useEffect, useMemo } from "react";
 import { Selecao } from "@/src/types/selecao";
 import { Jogo } from "@/src/types/jogo";
@@ -11,7 +11,7 @@ import { Grupo } from "@/src/types/grupo";
 import {
   getGruposAction,
   getGrupoSelecaoAction,
-} from "./actions/getGrupoSelecao";
+} from "../../actions/grupoSelecao";
 
 const filtros = [
   { label: "Fase", value: "fase" },
@@ -87,7 +87,7 @@ export default function Jogos() {
   return (
     <div className="w-full flex flex-col items-center">
   <h1 className="p-3 font-bold text-3xl">JOGOS</h1>
-  <div className="w-full flex justify-end px-8 mb-4">
+  <div className="w-full flex justify-end px-8">
     <Filter
       filtros={filtros}
       filtroAtivo={filtroAtivo}

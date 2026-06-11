@@ -14,3 +14,9 @@ export const getJogos = async() => {
     method: "GET"
   })
 }
+
+export const getJogoById = async(id:number) => {
+  return await api(`/jogo/${id}`, {
+    method: "GET"
+  })
+}

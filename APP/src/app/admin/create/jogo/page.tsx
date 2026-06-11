@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import Input from "@/src/app/components/input";
 import Select from "@/src/app/components/select";
 
-import { getSelecoesAction } from "./actions/getSelecoes";
+import { getSelecoesAction } from "../../../actions/selecao";
 
 import { Selecao } from "@/src/types/selecao";
-import { createJogoAction } from "./actions/createJogo";
+import { createJogoAction } from "../../../actions/jogo";
 import AlertCard from "@/src/app/components/alertCard";
 
 export default function CreateJogo() {

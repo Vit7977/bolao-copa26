@@ -9,7 +9,7 @@ import { TbTargetArrow } from "react-icons/tb";
 const links = [
   { href: "/", label: "Home", icon: FaHome },
   { href: "/jogos", label: "Jogos", icon: PiSoccerBallFill },
-  { href: "/bolao", label: "Palpites", icon: TbTargetArrow },
+  { href: "/palpites", label: "Palpites", icon: TbTargetArrow },
 ];
 
 export default function NavBar() {

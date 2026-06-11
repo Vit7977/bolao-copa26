@@ -11,7 +11,7 @@ const jogoSchema = z.object({
     .int({ message: "Seleção 2 deve ser um número inteiro!" })
     .positive({ message: "Seleção 2 deve ser um número positivo!" }),
 
-  fase: z.enum(["grupos", "oitavas", "quartas", "semifinal", "final"]),
+  fase: z.enum(["grupos", "16 avos", "oitavas", "quartas", "semifinal", "final"]),
 
   data: z.coerce.date(),
 
